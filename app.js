@@ -15,11 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
-app.get('/', (req,res)=>{
-    res.status(200).json({
-        msg: 'Working...'
-    })
-})
 
 app.use('/api', require('./api/index'));
 app.use('/users', require('./routes/users'));
