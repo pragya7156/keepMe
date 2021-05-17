@@ -1,0 +1,26 @@
+.user{
+    font-weight: bolder;
+    font-size: 30px;
+    color: #4d004d;
+}
+.dash{
+    margin: 30px;
+    overflow-y: hidden;
+}
+
+.para, .para2{
+    font-size: 20px;
+    font-style: italic;
+}
+
+.mail {
+    text-align: right;
+}
+
+
+@media only screen and (max-width:250px) {
+    .mail{
+        font-size: 10px;
+    }
+    
+}

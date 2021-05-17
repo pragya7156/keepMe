@@ -1,0 +1,11 @@
+.navigation {
+    background-color: #4d004d;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+}
+button.navbar-toggler {
+    background-color: white;
+    padding: 0;
+}

@@ -1,0 +1,38 @@
+.pnfpage{
+    /* background-image: url("https://tse2.mm.bing.net/th?id=OIP.1Wbb4xzbA904mgW-72vK3QHaHf&pid=Api&P=0&w=300&h=300");
+    height: 100vh;
+    opacity: 0.5; */
+    margin: 9% 10%;
+}
+
+.page{
+    font-weight: 650;
+    font-size: 80px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    color: #4d004d;
+    margin-top: 20px;
+}
+
+
+.oops{
+    font-weight: 900;
+    color: #4d004d;
+    font-size: 70px;
+    display: block;
+    margin: auto;
+    opacity: 2;
+}
+
+.nth{
+    font-size: 30px;
+    color: #4d004d;
+    font-weight: bold;
+}
+
+.home{
+    font-size: 20px;
+    text-decoration: underline;
+    color:#4d004d;
+}
