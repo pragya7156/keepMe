@@ -37,7 +37,7 @@ function AddEvents() {
         client.post(dest_url, { id })
             .then((res) => {
                 if (!res.data.status) {
-                    alert.error("Session expired")
+                    //alert.error("Session expired")
                     cookies.remove("token");
                     window.location = "/";
                 }

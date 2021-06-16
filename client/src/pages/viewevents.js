@@ -9,14 +9,12 @@ import client from '../helpers/client';
 import getid from '../helpers/getId';
 import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom';
-import { useAlert } from 'react-alert';
 const cookies = new Cookies();
 
 function ViewEvents() {
 
   const [events, setEvents] = useState([]);
   const id = getid();
-  const alert = useAlert();
 
   useEffect(() => {
     let des_url = `/api/viewevents/all`
@@ -43,7 +41,7 @@ function ViewEvents() {
     client.post(dest_url, { id })
       .then((res) => {
         if (!res.data.status) {
-          alert.error("Session expired")
+          //alert.error("Session expired")
           cookies.remove("token");
           window.location = "/";
         }

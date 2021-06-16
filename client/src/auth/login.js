@@ -27,7 +27,7 @@ function Login() {
         client.post(dest_url, {id})
             .then((res) => {
                 if (!res.data.status) {
-                    alert.error("Session Expired");
+                    //alert.error("Session Expired");
                         cookies.remove("token");
                         window.location = "/";
                 }

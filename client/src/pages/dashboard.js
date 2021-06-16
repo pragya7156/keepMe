@@ -32,7 +32,7 @@ function Dashboard() {
                 setName(n)
             }
             else {
-                alert.error("Failed to display name")
+                //alert.error("Failed to display name")
             }
         } catch (error) {
             alert.error("Error")
@@ -47,7 +47,7 @@ function Dashboard() {
                 setMem(mem.data.mem)
             }
             else {
-                alert.error("Failed to display count")
+                //alert.error("Failed to display count")
             }
         } catch (error) {
             alert.error("Error")
