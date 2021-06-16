@@ -6,29 +6,6 @@ import { MdDelete } from 'react-icons/md';
 import { useAlert } from 'react-alert';
 import getid from '../helpers/getId';
 
-// const EditField = (props) => {
-
-    
-
-//     const [todoEdit, setTodoEdit] = useState({
-//         title: props.title,
-//         todo_id: props.id
-//     })
-
-//     const alert = useAlert();
-
-//     let { title, todo_id } = todoEdit;
-
-   
-
-    
-
-//     return (
-        
-//     )
-// }
-
-
 function ToDoList() {
 
 
@@ -56,7 +33,6 @@ function ToDoList() {
         }
     });
 
-    // const [editing, setEditing] = useState(false)
     const [todoId, setTodoId] = useState({
         todo_id: "",
         title: ""

@@ -6,7 +6,7 @@ module.exports.IS_AUTHENTICATED = async (req, res, next) => {
     if (typeof authHeader !== 'undefined') {
         const token = authHeader && authHeader.split(' ')[1];
         if (!token)
-            return res.status(403).send({
+            return res.status(200).json({
                 message: "No token provided",
                 status: 0
             })
@@ -14,12 +14,12 @@ module.exports.IS_AUTHENTICATED = async (req, res, next) => {
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
             if (err) {
                 if(err.name === 'JsonWebTokenError') {
-                return res.status(400).json({
+                return res.status(200).json({
                     message: "JWT expired",
                     status: 0
                 })
             } else {
-                return res.status(400).json({
+                return res.status(200).json({
                     message: "Unauthorized",
                     status: 0
                 })
@@ -31,7 +31,7 @@ module.exports.IS_AUTHENTICATED = async (req, res, next) => {
         })
     }
     else {
-        return res.status(403).send({
+        return res.status(200).send({
             message: "Something went wrong",
             status: 0
         });

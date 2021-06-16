@@ -7,11 +7,16 @@ import diary from '../assets/images/writing diary.png'
 import '../styles/vieweventCard.css';
 import client from '../helpers/client';
 import getid from '../helpers/getId';
+import Cookies from 'universal-cookie';
+import { Redirect } from 'react-router-dom';
+import { useAlert } from 'react-alert';
+const cookies = new Cookies();
 
 function ViewEvents() {
 
   const [events, setEvents] = useState([]);
   const id = getid();
+  const alert = useAlert();
 
   useEffect(() => {
     let des_url = `/api/viewevents/all`
@@ -32,6 +37,25 @@ function ViewEvents() {
       description: item.description
     }
   });
+
+  if (cookies.get("token") != null) {
+    let dest_url = "/api/session";
+    client.post(dest_url, { id })
+      .then((res) => {
+        if (!res.data.status) {
+          alert.error("Session expired")
+          cookies.remove("token");
+          window.location = "/";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  if (cookies.get("token") == null) {
+    return <Redirect to={{ pathname: '/' }} />
+  }
 
   return (
     <>

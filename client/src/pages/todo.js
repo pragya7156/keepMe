@@ -7,6 +7,9 @@ import getid from '../helpers/getId';
 import { useAlert } from 'react-alert';
 import TodoList from '../components/todolist';
 import '../styles/addevents.css';
+import Cookies from 'universal-cookie';
+import { Redirect } from 'react-router-dom';
+const cookies = new Cookies();
 
 function ToDo() {
 
@@ -17,14 +20,33 @@ function ToDo() {
     });
 
     useEffect(() => {
-		window.scrollTo({
-			top: 0,
-		});
-	}, []);
+        window.scrollTo({
+            top: 0,
+        });
+    }, []);
 
     const { title, id } = todos;
 
     const alert = useAlert();
+
+    if (cookies.get("token") != null) {
+        let dest_url = "/api/session";
+        client.post(dest_url, { id })
+            .then((res) => {
+                if (!res.data.status) {
+                    alert.error("Session expired")
+                    cookies.remove("token");
+                    window.location = "/";
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+    if (cookies.get("token") == null) {
+        return <Redirect to={{ pathname: '/' }} />
+    }
 
     const handleChange = (e) => {
         setTodos({ ...todos, [e.target.name]: e.target.value });
@@ -35,7 +57,7 @@ function ToDo() {
         let des_url = `/users/addtodo`
         if (todos.title) {
             try {
-                const add = await client.post(des_url, {id, title})
+                const add = await client.post(des_url, { id, title })
                 if (add.data.status) {
                     alert.success("Todo added");
                 }
@@ -56,24 +78,24 @@ function ToDo() {
             <Header />
             <Container className="main">
                 <h2 className="heading" >Todo List </h2>
-                    <Form>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Prepend>
-                                <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <FormControl
-                                placeholder="Title"
-                                aria-label="Title"
-                                aria-describedby="basic-addon1"
-                                name="title"
-                                value={title}
-                                onChange={handleChange}
-                                required
-                            />
-                        </InputGroup>
-                        <Button style={{ backgroundColor: "#4d004d" }} type="submit" onClick={handleClick}>Add</Button>
-                    </Form>
-                    <TodoList style={{marginTop: 50+'px'}}/>
+                <Form>
+                    <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            placeholder="Title"
+                            aria-label="Title"
+                            aria-describedby="basic-addon1"
+                            name="title"
+                            value={title}
+                            onChange={handleChange}
+                            required
+                        />
+                    </InputGroup>
+                    <Button style={{ backgroundColor: "#4d004d" }} type="submit" onClick={handleClick}>Add</Button>
+                </Form>
+                <TodoList style={{ marginTop: 50 + 'px' }} />
             </Container>
             <Footer />
         </>

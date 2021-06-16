@@ -25,11 +25,11 @@ function HomePage() {
     if (cookies.get("token") != null) {
         var { id } = JwtDecode(cookies.get("token"));
         let dest_url = "/api/session";
-        client.post(dest_url, {id})
+        client.post(dest_url, { id })
             .then((res) => {
                 if (!res.data.status) {
-                        cookies.remove("token");
-                        window.location = "/";
+                    cookies.remove("token");
+                    window.location = "/";
                 }
             })
             .catch((err) => {
@@ -46,11 +46,11 @@ function HomePage() {
                 </Navbar>
                 <Row style={{ marginTop: 80 + 'px' }}>
                     <Col>
-                    <div style={{marginLeft: 20+'px'}}>
-                        <p className="welcome"> Welcome to your personal diary!</p>
-                        <p className="content1"> Who you are tomorrow begins with what you do today. Keep a diary and one day it'll keep you&nbsp;!</p>                        
-                        <div>Already registered? <button style={{ border: 'none', color: '#4d004d', marginBottom: '4px'}} type="submit" onClick={() => setLogin(true)}>Login here</button></div>
-                        <div>Don't have an account? <button style={{ border: 'none', color: '#4d004d' }} type="submit" onClick={() => setLogin(false)}>Register here</button></div>
+                        <div style={{ marginLeft: 20 + 'px' }}>
+                            <p className="welcome"> Welcome to your personal diary!</p>
+                            <p className="content1"> Who you are tomorrow begins with what you do today. Keep a diary and one day it'll keep you&nbsp;!</p>
+                            <div>Already registered? <button style={{ border: 'none', color: '#4d004d', marginBottom: '4px' }} type="submit" onClick={() => setLogin(true)}>Login here</button></div>
+                            <div>Don't have an account? <button style={{ border: 'none', color: '#4d004d' }} type="submit" onClick={() => setLogin(false)}>Register here</button></div>
                         </div>
                     </Col>
 

@@ -7,6 +7,9 @@ import '../styles/addevents.css';
 import { useAlert } from 'react-alert';
 import client from '../helpers/client'
 import getid from '../helpers/getId';
+import Cookies from 'universal-cookie';
+import { Redirect } from 'react-router-dom';
+const cookies = new Cookies();
 
 function AddEvents() {
 
@@ -22,12 +25,31 @@ function AddEvents() {
     const alert = useAlert();
 
     useEffect(() => {
-		window.scrollTo({
-			top: 0,
-		});
-	}, []);
+        window.scrollTo({
+            top: 0,
+        });
+    }, []);
 
     const { event_type, title, description } = data;
+
+    if (cookies.get("token") != null) {
+        let dest_url = "/api/session";
+        client.post(dest_url, { id })
+            .then((res) => {
+                if (!res.data.status) {
+                    alert.error("Session expired")
+                    cookies.remove("token");
+                    window.location = "/";
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+    if (cookies.get("token") == null) {
+        return <Redirect to={{ pathname: '/' }} />
+    }
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -90,11 +112,6 @@ function AddEvents() {
                             value={description}
                             onChange={handleChange} />
                     </Form.Group>
-
-                    {/* <Form.Group>
-                        <Form.File id="exampleFormControlFile1" className="forms" />
-                    </Form.Group> */}
-
 
                     <Button style={{ backgroundColor: "#4d004d" }} type="submit" onClick={handleClick}>Add Event</Button>
                 </Form>

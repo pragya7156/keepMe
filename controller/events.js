@@ -26,21 +26,6 @@ module.exports.ADDEVENTS = async (req, res) => {
             result
         })
 
-        // await pool.query(sql,bind, async function(err,results,fields) {
-        //     if(err) {
-        //         return res.status(400).json({
-        //             message: error.message,
-        //             status: 0
-        //         }) 
-        //     }
-        //      res.status(200).json({
-        //             message: "Event added successfully",
-        //             status: 1,
-        //             results,
-        //             fields
-        //         })
-        // })
-
     } catch (error) {
         return res.status(200).json({
             message: error.message,

@@ -14,8 +14,6 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/uploads", express.static(__dirname + "/uploads"));
-
 
 app.use('/api', require('./api/index'));
 app.use('/users', require('./routes/users'));

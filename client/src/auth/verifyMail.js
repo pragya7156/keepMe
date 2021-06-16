@@ -5,7 +5,6 @@ import client from '../helpers/client';
 import { useAlert } from 'react-alert';
 import Cookies from 'universal-cookie';
 import JwtDecode from 'jwt-decode';
-// import getid from '../helpers/getId';
 
 const cookies = new Cookies();
 

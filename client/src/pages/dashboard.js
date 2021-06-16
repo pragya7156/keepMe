@@ -57,40 +57,27 @@ function Dashboard() {
     const [name, setName] = useState(fetchName())
     const [mail, setMail] = useState(fetchName())
     const [mem, setMem] = useState(fetchMem())
-
-    if (cookies.get("token") != null) {
-        let dest_url = "/api/session";
-        client.post(dest_url, { id })
-            .then((res) => {
-                if (!res.data.status) {
-                    alert.error("Session expired")
-                    cookies.remove("token");
-                    window.location = "/";
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+    
     if (cookies.get("token") == null) {
         return <Redirect to={{ pathname: '/' }} />
     }
-    return (
-        <>
-            <Header />
-            <div className="dash">
-            <p className="mail">{`Logged in as: ${mail}`}</p>
-                <p className="user"> {`Welcome ${name}!!`} </p>
-                <div>
-                    <p className="para"> Do more of what makes you happy&nbsp;:) <br /> Collect moments, not things!</p>
-                    <p className="para2"> {`You have created `}<b>{`${mem} memories`}</b> {`in your diary. Do add more, there's always something good or bad happening`}&nbsp;:)</p>
+    else {
+        return (
+            <>
+                <Header />
+                <div className="dash">
+                    <p className="mail">{`Logged in as: ${mail}`}</p>
+                    <p className="user"> {`Welcome ${name}!!`} </p>
+                    <div>
+                        <p className="para"> Do more of what makes you happy&nbsp;:) <br /> Collect moments, not things!</p>
+                        <p className="para2"> {`You have created `}<b>{`${mem} memories`}</b> {`in your diary. Do add more, there's always something good or bad happening`}&nbsp;:)</p>
+                    </div>
                 </div>
-            </div>
 
-            <Footer />
-        </>
-    );
-
+                <Footer />
+            </>
+        );
+    }
 
 }
 
