@@ -24,18 +24,6 @@ function ViewEvents() {
       });
   }, [setEvents, id, events]);
 
-  const Events = events.map((item, idx) => {
-    return {
-      key: idx,
-      id: item.event_id,
-      title: item.title,
-      type: item.event_type,
-      date: item.created_at,
-      status: item.status,
-      description: item.description
-    }
-  });
-
   if (cookies.get("token") != null) {
     let dest_url = "/api/session";
     client.post(dest_url, { id })
@@ -54,6 +42,18 @@ function ViewEvents() {
   if (cookies.get("token") == null) {
     return <Redirect to={{ pathname: '/' }} />
   }
+
+  const Events = events.map((item, idx) => {
+    return {
+      key: idx,
+      id: item.event_id,
+      title: item.title,
+      type: item.event_type,
+      date: item.created_at,
+      status: item.status,
+      description: item.description
+    }
+  });
 
   return (
     <>
