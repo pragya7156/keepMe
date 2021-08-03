@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Navbar, Row, Col } from 'react-bootstrap';
 import { MdEvent } from 'react-icons/md';
-import JwtDecode from 'jwt-decode';
+// import JwtDecode from 'jwt-decode';
 import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom';
-import client from '../helpers/client';
+// import client from '../helpers/client';
 import '../styles/homepage.css';
 import Register from '../auth/register';
 import Login from '../auth/login'
@@ -23,18 +23,18 @@ function HomePage() {
     }, []);
 
     if (cookies.get("token") != null) {
-        var { id } = JwtDecode(cookies.get("token"));
-        let dest_url = "/api/session";
-        client.post(dest_url, { id })
-            .then((res) => {
-                if (!res.data.status) {
-                    cookies.remove("token");
-                    window.location = "/";
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        // var { id } = JwtDecode(cookies.get("token"));
+        // let dest_url = "/api/session";
+        // client.post(dest_url, { id })
+        //     .then((res) => {
+        //         if (!res.data.status) {
+        //             cookies.remove("token");
+        //             window.location = "/";
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     });
         return <Redirect to={{ pathname: '/user' }} />;
     }
     else {

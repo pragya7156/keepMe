@@ -32,20 +32,20 @@ function AddEvents() {
 
     const { event_type, title, description } = data;
 
-    if (cookies.get("token") != null) {
-        let dest_url = "/api/session";
-        client.post(dest_url, { id })
-            .then((res) => {
-                if (!res.data.status) {
-                    //alert.error("Session expired")
-                    cookies.remove("token");
-                    window.location = "/";
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+    // if (cookies.get("token") != null) {
+    //     let dest_url = "/api/session";
+    //     client.post(dest_url, { id })
+    //         .then((res) => {
+    //             if (!res.data.status) {
+    //                 //alert.error("Session expired")
+    //                 cookies.remove("token");
+    //                 window.location = "/";
+    //             }
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }
 
     if (cookies.get("token") == null) {
         return <Redirect to={{ pathname: '/' }} />

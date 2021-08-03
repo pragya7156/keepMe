@@ -7,9 +7,9 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import client from '../helpers/client';
 import getid from '../helpers/getId';
 import { useAlert } from 'react-alert';
-import Cookies from 'universal-cookie';
-import { Redirect } from 'react-router-dom';
-const cookies = new Cookies();
+// import Cookies from 'universal-cookie';
+// import { Redirect } from 'react-router-dom';
+// const cookies = new Cookies();
 
 function EventCard(props) {
 
@@ -115,24 +115,24 @@ function EventCard(props) {
 
   var n = weekday[ist];
 
-  if (cookies.get("token") != null) {
-    let dest_url = "/api/session";
-    client.post(dest_url, { id })
-      .then((res) => {
-        if (!res.data.status) {
-          //alert.error("Session expired")
-          cookies.remove("token");
-          window.location = "/";
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // if (cookies.get("token") != null) {
+  //   let dest_url = "/api/session";
+  //   client.post(dest_url, { id })
+  //     .then((res) => {
+  //       if (!res.data.status) {
+  //         //alert.error("Session expired")
+  //         cookies.remove("token");
+  //         window.location = "/";
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
-  if (cookies.get("token") == null) {
-    return <Redirect to={{ pathname: '/' }} />
-  }
+  // if (cookies.get("token") == null) {
+  //   return <Redirect to={{ pathname: '/' }} />
+  // }
 
   return (
     <div className="flex">

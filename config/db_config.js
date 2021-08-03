@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const util = require('util');
+// const util = require('util');
 const mysql = require('mysql');
 
 let pool = mysql.createPool({
@@ -10,13 +10,13 @@ let pool = mysql.createPool({
   database: process.env.DATABASE,
 });
 
-pool.getConnection((err, connection) => {
-  if (err) console.log(err);
-  else console.log("Connected to Database");
-  if (connection) connection.release();
-  return;
-});
+// pool.getConnection((err, connection) => {
+//   if (err) console.log(err);
+//   else console.log("Connected to Database");
+//   if (connection) connection.release();
+//   return;
+// });
 
-pool.query = util.promisify(pool.query);
+// pool.query = util.promisify(pool.query);
 
 module.exports = pool;
