@@ -4,7 +4,6 @@ import Footer from '../layout/footer';
 import '../styles/dashboard.css';
 import getid from '../helpers/getId';
 import client from '../helpers/client';
-import { useAlert } from 'react-alert';
 import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom';
 const cookies = new Cookies();
@@ -12,7 +11,6 @@ const cookies = new Cookies();
 function Dashboard() {
 
     const id = getid();
-    const alert = useAlert();
 
     useEffect(() => {
         window.scrollTo({
@@ -30,12 +28,9 @@ function Dashboard() {
                 setMail(m);
                 n = n.split(' ')[0]
                 setName(n)
-            }
-            else {
-                //alert.error("Failed to display name")
-            }
+            } 
         } catch (error) {
-            alert.error("Error")
+            //alert.error("Error")
         }
     }
 
@@ -46,11 +41,8 @@ function Dashboard() {
             if (mem.data.status) {
                 setMem(mem.data.mem)
             }
-            else {
-                //alert.error("Failed to display count")
-            }
         } catch (error) {
-            alert.error("Error")
+            //alert.error("Error")
         }
     }
 

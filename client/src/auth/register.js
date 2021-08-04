@@ -4,7 +4,7 @@ import { Container, Button, Form, InputGroup, FormControl, Card } from 'react-bo
 import client from '../helpers/client';
 import { useAlert } from 'react-alert';
 import Cookies from 'universal-cookie';
-// import getid from '../helpers/getId';
+import getid from '../helpers/getId';
 import '../styles/addevents.css';
 
 const cookies = new Cookies();
@@ -20,19 +20,19 @@ function Register() {
     })
 
     if (cookies.get("token") != null) {
-        // const id = getid();
-        // let dest_url = "/api/session";
-        // client.post(dest_url, {id})
-        //     .then((res) => {
-        //         if (!res.data.status) {
-        //             //alert.error("Session Expired");
-        //                 cookies.remove("token");
-        //                 window.location = "/";
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
+        const id = getid();
+        let dest_url = "/api/session";
+        client.post(dest_url, {id})
+            .then((res) => {
+                if (!res.data.status) {
+                    //alert.error("Session Expired");
+                        cookies.remove("token");
+                        window.location = "/";
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
         return <Redirect to={{ pathname: '/user' }} />;
     }
     else {

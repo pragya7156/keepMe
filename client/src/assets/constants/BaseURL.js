@@ -1,1 +1,1 @@
-export const BACKEND_URL = 'https://diary-fullstack.herokuapp.com';
+export const BACKEND_URL = 'https://mydiarykeepme.herokuapp.com';
