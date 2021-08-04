@@ -146,7 +146,7 @@ module.exports.LOGIN = async (req, res) => {
                     const id = results[0].user_id;
                     const payload = { id };
                     let accessToken;
-                    accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXPIRES_IN });
+                    accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
 
                     let sql_query = `UPDATE users SET last_login=?, token=? WHERE user_id='${id}';`;
                     const bind = [new Date(), accessToken];
